@@ -1,0 +1,43 @@
+<% layout("layouts/boilerplate") %>
+
+<a href="/"> Back to Quiz!</a>
+
+<div class="accordion mt-3 mb-3" id="accordionExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="false" aria-controls="collapseTwo">
+                Your Choices
+            </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+            data-parent="#accordionExample">
+            <div class="accordion-body">
+                <% for(let question of quiz) { %>
+                <h2 class="mt-3"><%- question.question %> </h2>
+                <div class="ml-5">
+                    <p class="<%= question.usersChoice === question.correct_answer ? "bg-success" : "bg-danger" %> ">
+                        Your
+                        choice:
+                        <%- question.usersChoice === undefined ? "No answer was chosen" : question.usersChoice; %></p>
+                    <p>Correct answer: <%- question.correct_answer %></p>
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-toggle="collapse" data-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                Results
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+            data-parent="#accordionExample">
+            <div class="accordion-body">
+                <h3>Your correct answers <%= quiz.answeredCorrectly %> out of <%= quiz.length %>!</h3>
+            </div>
+        </div>
+    </div>
+</div>

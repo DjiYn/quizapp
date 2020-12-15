@@ -1,0 +1,17 @@
+<% layout("layouts/boilerplate") %>
+
+<form class="mt-3 mb-3" action="/" method="POST">
+    <% for(let question of quiz) { %>
+    <h2 class="mt-3"><%- question.question %> </h2>
+    <% for(let answer of question.answers) { %>
+    <div class="form-check ml-5">
+        <input class="form-check-input" type="radio" name="<%= question.id %>" id="<%= question.id %><%= answer %>"
+            value="<%= answer %>">
+        <label class="form-check-label" for="<%= question.id %><%= answer %>">
+            <%- answer %>
+        </label>
+    </div>
+    <% } %>
+    <% } %>
+    <button class="btn btn-primary mt-3">Submit</button>
+</form>
